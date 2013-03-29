@@ -4,7 +4,7 @@ get '/' do
 end
 
 get '/game' do
-	Game.new()
+	# Game.new()
 	
 	erb :game
 end	
@@ -13,6 +13,3 @@ post '/move' do
 	send_move
 	erb :index
 end
-
-
-
