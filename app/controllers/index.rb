@@ -14,18 +14,40 @@ post '/game' do
 end
 
 get '/game/:id' do
+  @game = Game.find(params[:id])
   #make sure the user is a player in this game, if not redirect
   erb :game
 end
 
 get '/game/join/:id' do
   # add the current user to the game
-  Game#.change_attr('player_2_id', current_user.id)
-  redirect 'game/:id'
+  if current_user
+    Game.update_attr('player_2_id', current_user.id)
+    redirect 'game/:id'
+  end
+
+  redirect '/'
 end
 
-post '/move' do
-	send_move
+post '/:game_id/move' do
+  update_board(params[:move])
+end
+
+# post '/poll/:game_id/game_over' do
+
+# end
+
+get '/poll/:game_id/current_board' do
+  Game.find(params[:game_id]).board
+end
+
+get 'poll/:game_id/two_players' do
+  Game.two_players?
+end
+
+
+post '/:game_id/move' do
+	Game.move!(params[:letter], params[:position])
 	erb :index
 end
 
