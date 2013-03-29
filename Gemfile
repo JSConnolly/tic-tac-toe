@@ -15,7 +15,5 @@ gem 'activerecord'
 
 gem 'rake'
 
-group :test do
-  gem 'faker'
-  gem 'rspec'
-end
+gem 'faker'
+gem 'rspec'
