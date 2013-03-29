@@ -6,8 +6,9 @@ get '/' do
   erb :index
 end
 
-get '/game' do
-	# Game.new()
+post '/game' do
+	p = Player.create( username: 'dummy' )
+  Game.create( player_1_id: p.id, board: '000000000')
 	
 	erb :game
 end	
