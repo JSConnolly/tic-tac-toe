@@ -13,3 +13,7 @@ post '/move' do
 	send_move
 	erb :index
 end
+
+get '/profile' do
+  erb :profile
+end
