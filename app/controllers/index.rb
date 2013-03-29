@@ -30,7 +30,13 @@ get '/game/join/:id' do
 end
 
 post '/:game_id/move' do
-  update_board(params[:move])
+  g = Game.find(params[:game_id])
+
+  if g.move!(params[:letter], params[:move]) #returns true if the game is over
+    return g.winner
+  end
+
+  false
 end
 
 # post '/poll/:game_id/game_over' do
