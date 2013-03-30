@@ -35,7 +35,6 @@ post '/:game_id/move' do
   if g.move!(params[:letter], params[:move]) #returns true if the game is over
     return g.winner
   end
-
   false
 end
 
@@ -51,12 +50,12 @@ get 'poll/:game_id/two_players' do
   Game.two_players?
 end
 
-
 post '/:game_id/move' do
 	Game.move!(params[:letter], params[:position])
 	erb :index
 end
 
 get '/profile' do
+  
   erb :profile
 end

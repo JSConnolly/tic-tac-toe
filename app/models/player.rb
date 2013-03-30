@@ -10,6 +10,6 @@ class Player < ActiveRecord::Base
   def games
     self.games_as_p1 + self.games_as_p2
   end
-
+  
 
 end
