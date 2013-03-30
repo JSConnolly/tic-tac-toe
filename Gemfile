@@ -17,3 +17,5 @@ gem 'rake'
 
 gem 'faker'
 gem 'rspec'
+
+gem 'bcrypt-ruby'

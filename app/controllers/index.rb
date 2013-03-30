@@ -3,26 +3,30 @@ get '/' do
   # Players who create a game become Player 1 (X) and players who
   # join an existing game become Player 2 (O).
 
+  @player = current_player
   erb :index
 end
 
 post '/game' do
-	p = Player.create( username: 'dummy' )
-  g = Game.create( player_1_id: p.id, board: '000000000')
-	
-  redirect "/game/#{g.id}"
+  if current_player
+    g = Game.create( player_1_id: session[:player_id], board: '000000000')
+    redirect "/game/#{g.id}"
+  end
+
+  redirect '/'
 end
 
 get '/game/:id' do
   @game = Game.find(params[:id])
+
   #make sure the user is a player in this game, if not redirect
   erb :game
 end
 
 get '/game/join/:id' do
   # add the current user to the game
-  if current_user
-    Game.update_attr('player_2_id', current_user.id)
+  if current_player
+    Game.update_attr('player_2_id', current_player.id)
     redirect 'game/:id'
   end
 

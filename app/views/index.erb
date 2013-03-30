@@ -1,5 +1,50 @@
 <h1>Tic-Tac-Toe</h1>
 
-<form action='/game' method='post'>
-  <input type="submit" value="Start a game!">
-</form>
+<% if @errors %>
+  <ul.errors>
+  <% @errors.each do |e| %>
+    <li><%= e %></li>
+  <% end %>
+  </ul>
+<% end %>
+
+
+
+<% if !logged_in?  %>
+  <form id="login" action="/sessions/new" method="post" class="login-box">
+  <div class="input-group">
+    <span class="hidden errors" id="login-email-errors"></span>
+    <input type="text" name="email" class="input-small" value="" placeholder="Email">
+  </div>
+  <div class="input-group">
+    <input type="password" name="password" class="input-small" placeholder="Password">
+    <span class="hidden errors" id="login-errors"></span>
+  </div>
+    <input type="submit" value="Login" class="btn">
+  </form>
+
+  <h1>Sign up</h1>
+
+
+
+  <form id="signup" action="/players/new" method="post" class="login-box">
+    <div class="input-group">
+      <span class="hidden errors" id="name-errors"></span>
+      <input type="text" name="signup[username]" class="input-small" required pattern="J|j|\w\w+" value="" placeholder="Username">
+    </div>
+    <div class="input-group">
+      <span class="hidden errors" id="email-errors"></span>
+      <input type="text" name="signup[email]" class="input-small" required pattern="([0-9a-zA-Z]([-\.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})" value="" placeholder="Email">
+    </div>
+    <div class="input-group">
+      <span class="hidden errors" id="password-errors"></span>
+      <input type="password" name="signup[password]" class="input-small" placeholder="Password" required>
+    </div>
+    <input type="submit" value="Sign Up" class="btn">
+  </form>
+<% else %>
+  <form action='/game' method='post'>
+    <input type="submit" value="Start a game!">
+  </form>
+<% end %>
+
