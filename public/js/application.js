@@ -4,7 +4,7 @@ $(document).ready(function() {
     // alert(this);
     $('.game_board td').off('click');
     $(this).html('<span class="x">X</span>');
-
+    $('.game_board td').css('cursor', 'default');
   });
 
 });

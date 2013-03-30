@@ -29,5 +29,4 @@ class Player < ActiveRecord::Base
     self.email.downcase!
   end
 
-
 end
